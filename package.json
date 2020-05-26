@@ -1,5 +1,5 @@
 {
-  "name": "serverless-alexa-skills",
+  "name": "@boxoffice/serverless-alexa-skills",
   "version": "0.1.0",
   "description": "Manage your Alexa Skills with Serverless Framework",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marcy-terui/serverless-alexa-skills.git"
+    "url": "git+https://github.com/allocine/serverless-alexa-skills.git"
   },
   "keywords": [
     "serverless",
@@ -20,9 +20,9 @@
   "author": "Masashi Terui",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/marcy-terui/serverless-alexa-skills/issues"
+    "url": "https://github.com/allocine/serverless-alexa-skills/issues"
   },
-  "homepage": "https://github.com/marcy-terui/serverless-alexa-skills#readme",
+  "homepage": "https://github.com/allocine/serverless-alexa-skills#readme",
   "dependencies": {
     "bluebird": "^3.5.1",
     "deep-diff": "^0.3.8",

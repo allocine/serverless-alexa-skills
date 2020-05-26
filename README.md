@@ -2,7 +2,7 @@ Serverless Alexa Skills Plugin
 =======
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
-[![Build Status](https://travis-ci.org/marcy-terui/serverless-alexa-skills.svg?branch=master)](https://travis-ci.org/marcy-terui/serverless-alexa-skills)
+<!-- [![Build Status](https://travis-ci.org/marcy-terui/serverless-alexa-skills.svg?branch=master)](https://travis-ci.org/marcy-terui/serverless-alexa-skills) -->
 
 # Description
 
@@ -15,13 +15,7 @@ Manage your Alexa Skills with Serverless Framework.
 # Installation
 
 ```sh
-serverless plugin install --name serverless-alexa-skills
-```
-
-or
-
-```sh
-npm install serverless-alexa-skills
+npm install @boxoffice/serverless-alexa-skills
 ```
 
 # Setup
@@ -154,9 +148,9 @@ See: [the post of Serverless Blog](https://serverless.com/blog/how-to-manage-you
 Development
 -----------
 
--   Source hosted at [GitHub](https://github.com/marcy-terui/serverless-alexa-skills)
+-   Source hosted at [GitHub](https://github.com/allocine/serverless-alexa-skills)
 -   Report issues/questions/feature requests on [GitHub
-    Issues](https://github.com/marcy-terui/serverless-alexa-skills/issues)
+    Issues](https://github.com/allocine/serverless-alexa-skills/issues)
 
 Pull requests are very welcome! Make sure your patches are well tested.
 Ideally create a topic branch for every separate change you make. For
@@ -171,9 +165,11 @@ example:
 Authors
 -------
 
-Created and maintained by [Masashi Terui](https://github.com/marcy-terui) (<marcy9114@gmail.com>)
+Created by [Masashi Terui](https://github.com/marcy-terui)
+Maintained by [Arnaud Courtecuisse](https://github.com/arnaudcourtecuissewbd)
+
 
 License
 -------
 
-MIT License (see [LICENSE](https://github.com/marcy-terui/serverless-alexa-skills/blob/master/LICENSE.txt))
+MIT License (see [LICENSE](https://github.com/allocine/serverless-alexa-skills/blob/master/LICENSE.txt))
