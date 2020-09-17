@@ -3,12 +3,12 @@ service: alexa-skills-test
 provider:
   name: aws
   stage: dev
-  runtime: nodejs6.10
+  runtime: nodejs10.x
 functions:
   hello:
     handler: handler.hello
 plugins:
-  - serverless-alexa-skills
+  - ../
 
 custom:
   alexa:
