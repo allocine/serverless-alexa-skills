@@ -24,7 +24,6 @@ custom:
                 name: test3
           apis:
             custom: {}
-          manifestVersion: '1.0'
         models:
           ja-JP:
             interactionModel:

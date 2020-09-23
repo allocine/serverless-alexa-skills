@@ -174,7 +174,7 @@ class AlexaSkills {
           if (!('dryRun' in this.options)) {
             return this.updateSkills(diffs);
           }
-          return BbPromise.resolve();
+          return BbPromise.resolve(diffs);
         })
         .then(this.outputUpdatedSkillIds),
       'alexa:build:build': () => BbPromise.bind(this)
