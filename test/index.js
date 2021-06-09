@@ -1,10 +1,10 @@
 'use strict';
 
-const expect = require('chai').expect;
+const { expect } = require('chai');
 const sinon = require('sinon');
 
 const Serverless = require('serverless/lib/Serverless');
-const AwsProvider = require('serverless/lib/plugins/aws/provider/awsProvider');
+const AwsProvider = require('serverless/lib/plugins/aws/provider');
 const BbPromise = require('bluebird');
 const AlexaSkills = require('./../index');
 
@@ -12,11 +12,15 @@ describe('AlexaSkills', () => {
   let serverless;
   let alexaSkills;
 
-  beforeEach(() => {
-    serverless = new Serverless();
+  beforeEach(async () => {
+    serverless = new Serverless({
+      commands: ['alexa'],
+      options: {},
+      configurationPath: null,
+    });
     serverless.servicePath = true;
-    serverless.init();
     serverless.setProvider('aws', new AwsProvider(serverless));
+    await serverless.init();
     alexaSkills = new AlexaSkills(serverless, {});
   });
 
@@ -26,22 +30,22 @@ describe('AlexaSkills', () => {
     it('should set the provider variable to an instance of AwsProvider', () =>
       expect(alexaSkills.provider).to.be.instanceof(AwsProvider));
 
-      it('should run promise chain in order for before:package:createDeploymentArtifacts', () => {
-        const initializeStub = sinon
-          .stub(alexaSkills, 'initialize').returns(BbPromise.resolve());
+    it('should run promise chain in order for before:package:createDeploymentArtifacts', () => {
+      const initializeStub = sinon
+        .stub(alexaSkills, 'initialize').returns(BbPromise.resolve());
 
-        const excludeTokenFileStub = sinon
-          .stub(alexaSkills, 'excludeTokenFile').returns(BbPromise.resolve());
+      const excludeTokenFileStub = sinon
+        .stub(alexaSkills, 'excludeTokenFile').returns(BbPromise.resolve());
 
-        return alexaSkills.hooks['before:package:createDeploymentArtifacts']().then(() => {
-          expect(initializeStub.calledOnce).to.equal(true);
-          expect(excludeTokenFileStub.calledAfter(initializeStub))
-            .to.equal(true);
+      return alexaSkills.hooks['before:package:createDeploymentArtifacts']().then(() => {
+        expect(initializeStub.calledOnce).to.equal(true);
+        expect(excludeTokenFileStub.calledAfter(initializeStub))
+          .to.equal(true);
 
-          alexaSkills.initialize.restore();
-          alexaSkills.excludeTokenFile.restore();
-        });
+        alexaSkills.initialize.restore();
+        alexaSkills.excludeTokenFile.restore();
       });
+    });
 
     it('should run promise chain in order for alexa:auth:auth', () => {
       const initializeStub = sinon
@@ -153,7 +157,6 @@ describe('AlexaSkills', () => {
     });
 
     it('should run promise chain in order for alexa:update:update', () => {
-
       const initializeStub = sinon
         .stub(alexaSkills, 'initialize').returns(BbPromise.resolve());
 
@@ -195,7 +198,7 @@ describe('AlexaSkills', () => {
     });
 
     it('should run promise chain in order for alexa:update:update (Dry run)', () => {
-      alexaSkills = new AlexaSkills(serverless, {dryRun: true});
+      alexaSkills = new AlexaSkills(serverless, { dryRun: true });
 
       const initializeStub = sinon
         .stub(alexaSkills, 'initialize').returns(BbPromise.resolve());
@@ -232,7 +235,6 @@ describe('AlexaSkills', () => {
     });
 
     it('should run promise chain in order for alexa:build:build', () => {
-
       const initializeStub = sinon
         .stub(alexaSkills, 'initialize').returns(BbPromise.resolve());
 
@@ -274,7 +276,7 @@ describe('AlexaSkills', () => {
     });
 
     it('should run promise chain in order for alexa:build:build (Dry run)', () => {
-      alexaSkills = new AlexaSkills(serverless, {dryRun: true});
+      alexaSkills = new AlexaSkills(serverless, { dryRun: true });
 
       const initializeStub = sinon
         .stub(alexaSkills, 'initialize').returns(BbPromise.resolve());
@@ -309,6 +311,5 @@ describe('AlexaSkills', () => {
         alexaSkills.outputUpdatedModels.restore();
       });
     });
-
   });
 });
