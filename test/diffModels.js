@@ -15,15 +15,15 @@ describe('diffModels()', () => {
         'ja-JP': { foo: 'bar' },
       },
     }];
-    const remoteSkills = [[{
+    const remoteSkills = [{
       id: 'foo',
       locale: 'ja-JP',
       model: { foo: 'buz' },
-    }]];
+    }];
 
     diffModels.serverless.service.custom.alexa.skills = localSkills;
     diffModels.diffModels(remoteSkills).then((ret) => {
-      expect(ret.pop().length).to.equal(1);
+      expect(ret.length).to.equal(1);
     });
   });
 
@@ -34,15 +34,15 @@ describe('diffModels()', () => {
         'ja-JP': { foo: 'bar' },
       },
     }];
-    const remoteSkills = [[{
+    const remoteSkills = [{
       id: 'bar',
       locale: 'ja-JP',
       model: { foo: 'buz' },
-    }]];
+    }];
 
     diffModels.serverless.service.custom.alexa.skills = localSkills;
     diffModels.diffModels(remoteSkills).then((ret) => {
-      expect(ret.pop().length).to.equal(0);
+      expect(ret.length).to.equal(0);
     });
   });
 
@@ -53,20 +53,20 @@ describe('diffModels()', () => {
         'ja-JP': { foo: 'bar' },
       },
     }];
-    const remoteSkills = [[{
+    const remoteSkills = [{
       id: 'foo',
       locale: 'ja-JP',
       model: { foo: 'bar', version: '2' },
-    }], [{
+    }, {
       id: 'foo',
       locale: 'ja-JP',
       model: { foo: 'buz', version: '1' },
-    }]];
+    }];
 
     diffModels.serverless.service.custom.alexa.skills = localSkills;
     diffModels.diffModels(remoteSkills).then((ret) => {
-      expect(ret[0].pop().diff).to.equal(undefined);
-      expect(ret[1].pop().diff.length).to.equal(1);
+      expect(ret[0].diff).to.equal(undefined);
+      expect(ret[1].diff.length).to.equal(1);
     });
   });
 });
